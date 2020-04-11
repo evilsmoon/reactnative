@@ -1,14 +1,13 @@
 import React from 'react';
-import { View,Text } from 'react-native';
+import {View,Text} from 'react-native';
 
-export default function Loading( props ) {
+
+export default function Restaurants() {
     return (
         <View>
             <Text>
-                Cargando
+                Restaurants
             </Text>
         </View>
-
     )
-
 }
