@@ -1,0 +1,28 @@
+Facebook.initializeAsync(FacebookApi.application_id); // Aqui necesitamos el APP Id
+  const login = async () => {
+    const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+      permissions: FacebookApi.permissions, // Solamente se necesita el permiso aqui
+    });
+ 
+    if (type == "success") {
+      const credentials = firebase.auth.FacebookAuthProvider.credential(token);
+      await firebase
+        .auth()
+        .signInWithCredential(credentials)
+        .then(() => {
+          console.log("Login correcto...!");
+        })
+        .catch(() => {
+          console.log("Error accediendo Facebook, intente más tarde");
+        });
+    } else if (type == "cancel") {
+      console.log("Inicio de session cancelado");
+    } else {
+      console.log("Error desconocido, intentelo mas tarde");
+    }
+  };
+
+
+
+  DOC: https://docs.expo.io/versions/latest/sdk/facebook/
+  
